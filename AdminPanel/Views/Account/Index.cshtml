@@ -1,0 +1,39 @@
+﻿@model  AdminPanel.Models.owl_Account
+@{
+    Layout = "";
+}
+
+<link href="~/assets/css/style.css" rel="stylesheet" />
+
+<div class="login">
+    <h1>Login</h1>
+    @using (Html.BeginForm("Index", "Account", FormMethod.Post))
+    {
+        <div>@Html.TextBoxFor(q => q.UserName, new { @name = "u", placeholder = "Username", required = "required" })</div>
+
+        <div>@Html.TextBoxFor(q => q.Password, new { @name = "p", placeholder = "Password", required = "required", Type= "password" })</div>
+
+        if (!string.IsNullOrEmpty(ViewBag.returnMessageLogin))
+
+        {
+
+        <span class="Error">@ViewBag.returnMessageLogin</span>
+
+        }
+
+
+        <input type="submit" value="Giriş Yap" class="btn btn-primary btn-block btn-large" />
+
+
+    }
+
+</div>
+
+
+
+@*@using (Html.BeginForm("Index", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="text" name="u" placeholder="Username" required="required" />
+        <input type="password" name="p" placeholder="Password" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">GİRİŞ</button>
+    }*@

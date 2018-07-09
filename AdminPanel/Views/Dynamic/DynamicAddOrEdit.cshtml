@@ -1,0 +1,74 @@
+﻿@model  AdminPanel.Models.owl_DynamicPage
+@{
+    ViewBag.Title = "DynamicAddOrEdit";
+}
+
+@*@Html.HiddenFor(m => m.Id)*@
+
+<div class="main-content">
+    <div class="main-content-inner">
+        @Html.Partial("_BreadCrumbs")
+
+        <div class="page-content">
+            <div class="page-header">
+                <h1>
+                    Dashboard
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        overview &amp; stats
+                    </small>
+                </h1>
+            </div>
+
+
+            @using (Html.BeginForm("DynamicAddOrEdit", "Dynamic", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <div class="col-xl-12 bosluk2">
+                    <div class="card pd-20 pd-sm-40 form-layout form-layout-4">
+
+                        <div class="row Satır">
+                            @Html.LabelFor(m => m.Name, new { @class = "Left col-sm-2 form-control-label" })
+                            <div class="col-sm-10 mg-t-10 mg-sm-t-0 Right">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "İçirik Adı", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="row Satır">
+                            @Html.LabelFor(m => m.Info, new { @class = "col-sm-2 form-control-label Left" })
+                            <div class="col-sm-10 mg-t-10 mg-sm-t-0 Right">
+                                @Html.TextAreaFor(m => m.Info, new { @class = "form-control", placeholder = "İcerik Girin", required = "required", id = "froala-editor" })
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="alert alert-info" role="alert">
+                        <strong>
+                            @if (ViewBag.message != null)
+                            {
+                                @ViewBag.message
+                            }
+                        </strong>
+                    </div>
+
+
+                    <div class="form-layout-footer mg-t-30">
+                        <button type="submit" class="btn btn-info mg-r-5">Kaydet</button>
+                        <button type="reset" class="btn btn-secondary">İptal</button>
+                    </div><!-- form-layout-footer -->
+                </div><!-- card -->
+
+            }
+        </div>
+    </div>
+</div>
+
+<link href="~/assets/css/style.css" rel="stylesheet" />
+
+
+
+
+
+

@@ -1,0 +1,117 @@
+﻿@model AdminPanel.Models.HotProduct
+@{
+    ViewBag.Title = "HotProduct_AddAddOrEdit";
+
+    AdminPanel.Models.MasterContext mContext = new AdminPanel.Models.MasterContext();
+
+    List<AdminPanel.Models.HotProduct_Group> List = mContext.Product_Gruop.ToList();
+
+    var productGroupDropDown = List.Select(q => new SelectListItem { Value = q.Id.ToString(), Text = q.Name }).ToList();
+
+
+}
+
+@*@Html.HiddenFor(m => m.Id)*@
+
+<div class="main-content">
+    <div class="main-content-inner">
+        @Html.Partial("_BreadCrumbs")
+
+        <div class="page-content">
+            <div class="page-header">
+                <h1>
+                    Dashboard
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        overview &amp; stats
+                    </small>
+                </h1>
+            </div>
+
+
+            @using (Html.BeginForm("Product_AddOrEdit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <div class="col-xl-12 bosluk2">
+                    <div class="card pd-20 pd-sm-40 form-layout form-layout-4">
+                        <div class="row Satır">
+                            <div class="col-sm-2 Left">
+                                <label>Ürün Grubu Seç</label>
+                            </div>
+                            <div class="col-sm-10 mg-t-10 mg-sm-t-0 Right">
+                                @Html.DropDownListFor(m => m.rlt_Product_Group_Id, productGroupDropDown, "-- Ürün Grubu Seçin--", new { @class = "form-control", placeholder = "Slider Name", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="row Satır">
+                            @Html.LabelFor(m => m.Code, new { @class = "col-sm-2 form-control-label Left" })
+                            <div class="col-sm-10 mg-t-10 mg-sm-t-0 Right">
+                                @Html.TextBoxFor(m => m.Code, new { @class = "form-control", placeholder = "Ürün Name", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="row Satır">
+                            @Html.LabelFor(m => m.Name, new { @class = "col-sm-2 form-control-label Left" })
+                            <div class="col-sm-10 mg-t-10 mg-sm-t-0 Right">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Kısa Açıklama", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="row Satır">
+                            @Html.LabelFor(m => m.Stok_No, new { @class = "col-sm-2 form-control-label Left" })
+                            <div class="col-sm-10 mg-t-10 mg-sm-t-0 Right">
+                                @Html.TextBoxFor(m => m.Stok_No, new { @class = "form-control", placeholder = "Stok No", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="row Satır">
+                            @Html.LabelFor(m => m.Fiyat_No, new { @class = "col-sm-2 form-control-label Left" })
+                            <div class="col-sm-10 mg-t-10 mg-sm-t-0 Right">
+                                @Html.TextBoxFor(m => m.Fiyat_No, new { @class = "form-control", placeholder = "Ürün Fiyatı", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="row Satır">
+                            @Html.LabelFor(m => m.Adet_No, new { @class = "col-sm-2 form-control-label Left" })
+                            <div class="col-sm-10 mg-t-10 mg-sm-t-0 Right">
+                                @Html.TextBoxFor(m => m.Adet_No, new { @class = "form-control", placeholder = "Ürün Adet", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="row Satır">
+                            @Html.LabelFor(m => m.Info, new { @class = "col-sm-2 form-control-label Left" })
+                            <div class="col-sm-10 mg-t-10 mg-sm-t-0 Right">
+                                @Html.TextAreaFor(m => m.Info, new  { @class = "form-control", placeholder = "İcerik Girin", required = "required", id = "froala-editor" })
+                            </div>
+
+                        </div>
+                                      
+
+
+                        <div class="form-layout-footer mg-t-30">
+                            <button type="submit" class="btn btn-info mg-r-5">Kaydet</button>
+                            <button type="reset" class="btn btn-secondary">İptal</button>
+                        </div><!-- form-layout-footer -->
+                    </div><!-- card -->
+                </div><!-- col-6 -->
+            }
+
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#summernote').summernote();  //no arguments
+    });
+</script>
+
+
+<link href="~/assets/css/style.css" rel="stylesheet" />
+
+
+
+
+

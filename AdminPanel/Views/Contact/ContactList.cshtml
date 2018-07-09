@@ -1,0 +1,71 @@
+﻿@model List<AdminPanel.Models.owl_ContactInformations>
+@{
+    ViewBag.Title = "ContactList";
+}
+
+
+<div class="main-content">
+    <div class="main-content-inner">
+        @Html.Partial("_BreadCrumbs")
+
+        <div class="page-content">
+            <!-- /.ace-settings-container -->
+            <div class="page-header">
+                <h1>
+                    Dashboard
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        overview &amp; stats
+                    </small>
+                </h1>
+            </div><!-- /.page-header -->
+
+            <a href="@Url.Action("ContactAddOrEdit","Contact")" class="button"><span>New</span></a>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Info</th>
+                        <th>Address</th>
+                        <th>Yetkili Kişi</th>
+                        <th>Yetkili Telefon</th>
+                        <th>Fax</th>
+                        <th>Departman Adı</th>
+                        <th>Departman Mail</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@Html.Raw(item.Info)</td>
+                        <td>@item.Address</td>
+                        <td>@item.Phone_Name</td>
+                        <td>@item.Phone_No</td>
+                        <td>@item.Fax</td>
+                        <td>@item.Mail_Name</td>
+                        <td>@item.Mail_Address</td>
+                        <td>
+                            <a class="edit" href="@Url.Action("ContactAddOrEdit","Contact")/@item.Id"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                            <a class="delete" href="@Url.Action("NewsDelete","Contact")/@item.Id"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+            <!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div><!-- /.main-content -->
+@*<a href="/Manage/NewsAdd">Yeni Ekle</a>*@
+
+<link href="~/assets/css/style.css" rel="stylesheet" />
+
+
+
+
